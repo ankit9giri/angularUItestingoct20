@@ -1,0 +1,178 @@
+<div class="modal-header">
+    <h2 class="modal-title">General Parameters</h2>
+    <button type="button" class="close btn-sm" aria-label="Close" (click)="hideModalFunction()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<!-- Alerts -->
+<div *ngIf="alertService.successMsg" class="alert alert-success" role="alert">
+    saved successfully!!
+</div>
+<div *ngIf="alertService.errMsg" class="alert alert-danger" role="alert">
+    something wrong happened!
+</div>
+
+<div class="modal-body">
+    <div id="table" class="table-editable">
+        <table class="table table-bordered table-responsive-lg table-striped">
+            <colgroup>
+                <col style="width: 28%;">
+                <col style="width: 18%;">
+                <col style="width: 18%;">
+                <col style="width: 18%;">
+                <col style="width: 18%;">
+            </colgroup>
+            <thead class="thead-light">
+                <th>Parameters</th>
+                <th>Dense Urban</th>
+                <th>Urban</th>
+                <th>Sub Urban</th>
+                <th>Rural</th>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <th> Inter Site Distance (km)</th>
+                    <!-- <td><input type="text"> </td> -->
+                    <td contenteditable="true" #dur [textContent]="denseUrban" (input)="denseUrban=dur.innerText">
+                    </td>
+                    <td contenteditable='true' #urb [textContent]="urban" (input)="urban=urb.innerText"> </td>
+                    <td contenteditable='true' #sub [textContent]="subUrban" (input)="subUrban=sub.innerText"> </td>
+                    <td contenteditable='true' #rur [textContent]="rural" (input)="rural=rur.innerText"> </td>
+                </tr>
+                <tr class="thead-light">
+                    <th></th>
+                    <th colspan="2">DL</th>
+                    <th colspan="2">UL</th>
+                </tr>
+                <tr>
+                    <th> Operating Band (MHz)</th>
+                    <td colspan="4" contenteditable='false' class="form-group">
+                        <!-- <select class="form-control" [(ngModel)]="selectedoperating_bandArr"
+                            (ngModelChange)="changeFn($event)" name="selectedoperating_bandArr">
+                            <option value=''>-- Select your Type --</option>
+                            <option *ngFor="let item of operating_bandArr" [value]="item">
+                                {{item}}
+                            </option>
+                        </select> -->
+                        <select class="form-control" [value]='selectedoperating_band'
+                            (change)='selectedoperating_band = $event.target.value;'>
+                            <option value=''>-- Select Type --</option>
+                            <option *ngFor="let item of operating_bandArr" [ngValue]="item">{{ item }}</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th> Channel Bandwidth (MHz) </th>
+                    <td colspan="4" contenteditable='false' class="form-group">
+                        <select class="form-control" [value]='selectedchannel_bandwidth'
+                            (change)='selectedchannel_bandwidth = $event.target.value;'>
+                            <option value=''>-- Select Type --</option>
+                            <option *ngFor="let item of channel_bandwidthArr" [ngValue]="item">{{ item }}</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Channel Model </th>
+                    <td colspan="4" contenteditable='false' class="form-group">
+                        <select class="form-control" [value]='selectedchannel_model'
+                            (change)='selectedchannel_model = $event.target.value;'>
+                            <option value=''>-- Select Type --</option>
+                            <option *ngFor="let item of channel_modelArr" [ngValue]="item">{{ item }}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Cell Load </th>
+                    <td colspan="2" contenteditable='false'> 50%</td>
+                    <td colspan="2" contenteditable='false'>50% </td>
+                </tr>
+                <tr>
+                    <th>MIMO Settings</th>
+                    <td colspan="2" contenteditable='false' class="form-group">
+                        <select class="form-control" [value]='selectedmimo_setting_dl'
+                            (change)='selectedmimo_setting_dl = $event.target.value;'>
+                            <option value=''>-- Select Type --</option>
+                            <option *ngFor="let item of mimo_setting_dlArr" [ngValue]="item">{{ item }}</option>
+                        </select>
+                    </td>
+                    <td colspan="2" contenteditable='false' class="form-group">
+                        <select class="form-control" [value]='selectedmimo_setting_ul'
+                            (change)='selectedmimo_setting_ul = $event.target.value;'>
+                            <option value=''>-- Select Type --</option>
+                            <option *ngFor="let item of mimo_setting_ulArr" [ngValue]="item">{{ item }}</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Scheduler</th>
+                    <td colspan="2" contenteditable='false'> Channel aware (RRM SFS)</td>
+                    <td colspan="2" contenteditable='false' class="form-group">
+                        <select class="form-control" [value]='selectedscheduler_ul'
+                            (change)='selectedscheduler_ul = $event.target.value;'>
+                            <option value=''>-- Select Type --</option>
+                            <option *ngFor="let item of scheduler_ulArr" [ngValue]="item">{{ item }}</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Extended UL MCS Range</th>
+                    <td colspan="2" contenteditable='false' class="text-center"> - </td>
+                    <td colspan="2" contenteditable='false' class="form-group">
+                        <select class="form-control" [value]='selectedextended_ul_mcs_range'
+                            (change)='selectedextended_ul_mcs_range = $event.target.value;'>
+                            <option value=''>-- Select Type --</option>
+                            <option *ngFor="let item of extended_ul_mcs_rangeArr" [ngValue]="item">{{ item }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Victim Cell Always Fully Loaded (100% PRB utilization)</th>
+                    <td colspan="4" contenteditable='false' class="form-group">
+                        <select class="form-control" [value]='selectedvictim_cell_always_fully_loaded'
+                            (change)='selectedvictim_cell_always_fully_loaded = $event.target.value;'>
+                            <option value=''>-- Select Type --</option>
+                            <option *ngFor="let item of victim_cell_always_fully_loadedArr" [ngValue]="item">
+                                {{ item }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>6-sector Deployment</th>
+                    <td colspan="4" contenteditable='false' class="form-group">
+                        <select class="form-control" [value]='selected_6_sector_deployment'
+                            (change)='selected_6_sector_deployment = $event.target.value;'>
+                            <option value=''>-- Select Type --</option>
+                            <option *ngFor="let item of _6_sector_deploymentArr" [ngValue]="item">{{ item }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Deployment Class</th>
+                    <td colspan="4" contenteditable='false' class="form-group">
+                        <select class="form-control" [value]='selecteddeployment_class'
+                            (change)='selecteddeployment_class = $event.target.value;'>
+                            <option value=''>-- Select Type --</option>
+                            <option *ngFor="let item of deployment_classArr" [ngValue]="item">{{ item }}</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="hideModalFunction()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+</div>

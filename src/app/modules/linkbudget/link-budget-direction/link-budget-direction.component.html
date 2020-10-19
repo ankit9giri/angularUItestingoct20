@@ -1,0 +1,78 @@
+<div class="modal-header">
+    <h4 class="modal-title">Link Budget Direction</h4>
+    <button type="button" class="close btn-sm" aria-label="Close" (click)="hideModalFunction()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <div id="table" class="table-editable">
+
+        <!-- <span class="table-add float-right mb-3 mr-2">
+                <a class="text-success" (click)="add()">
+                    <mdb-icon fas icon="plus" size="2x"></mdb-icon>
+                </a>
+            </span> -->
+        <table class="table table-bordered table-responsive-lg table-striped">
+            <thead class=" thead-light">
+                <tr>
+                    <th colspan="6" class="text-center">Link Budget Direction
+                        <a class="btn btn-info btn-md" style="float:right; color:white;" (click)="addRow()">
+                            <span class="glyphicon glyphicon-plus">+</span>
+                        </a>
+                    </th>
+                </tr>
+                <th>#</th>
+                <!-- <th>id</th> -->
+                <th class="">Parameter</th>
+                <th class="">eNB</th>
+                <th class="">UE</th>
+                <th class="">Unit</th>
+                <th class="">Action</th>
+                <!-- <th class="text-center">Sort</th> -->
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of LinkBudgetDirectionList; let i = index">
+                    <td>
+                        <span>{{i+1}}</span>
+                    </td>
+                    <td>
+                        <span *ngIf="item.id" (keyup)=" changeValue(i, 'parameter' , $event)"
+                            (blur)="updateList(i, 'parameter', $event)"
+                            contenteditable="false">{{item.parameter}}</span>
+                        <span *ngIf="!item.id" (keyup)=" changeValue(i, 'parameter' , $event)"
+                            (blur)="updateList(i, 'parameter', $event)" contenteditable="true">{{item.parameter}}</span>
+                    </td>
+                    <td>
+                        <span (keyup)="changeValue(i, 'enb', $event)" (blur)="updateList(i, 'enb', $event)"
+                            contenteditable="true">{{item.enb}}</span>
+                    </td>
+                    <td>
+                        <span (keyup)="changeValue(i, 'ue', $event)" (blur)="updateList(i, 'ue', $event)"
+                            contenteditable="true">{{item.ue}}</span>
+                    </td>
+                    <td>
+                        <span (keyup)="changeValue(i, 'unit', $event)" (blur)="updateList(i, 'unit', $event)"
+                            contenteditable="true">{{item.unit}}</span>
+                    </td>
+                    <td>
+                        <!-- <span>
+                                    <button type="button" class="btn btn-danger  btn-sm"
+                                        (click)="deleteLinkBudgetDirection(item.id)">Remove</button>
+                                </span> -->
+                        <span>
+                            <button type="button" class="btn btn-success  btn-sm" id={{i}}
+                                (click)="updateLinkBudgetDirection(item)">Update</button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="hideModalFunction()">Close</button>
+</div>

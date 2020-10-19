@@ -1,0 +1,107 @@
+<button class="btn btn-primary mb-2 mr-2" (click)="openModal('range')">Link Budget Range</button>
+<button class="btn btn-primary mb-2 mr-2" (click)="openModal('direction')">Link Budget Direciton</button>
+<button class="btn btn-primary mb-2 mr-2" (click)="openModal('mcs')">Link Budget MCS</button>
+<button class="btn btn-primary mb-2 mr-2" (click)="openModal('model')">Link Budget Model</button>
+
+
+<!-- <div class="">
+    <div class="row"> -->
+<!-- <div class="float-left">
+            <div class="card">
+                <div class=" card-body">
+                    <div id="table" class="table-editable" style="overflow-x:auto;">
+                        <table class=" table table-bordered table-responsive table-striped table-lg">
+                            <thead class=" thead-light">
+                                <tr>
+                                    <th colspan="5" class="text-center"><span>Link Budget Model</span>
+                                    </th>
+                                </tr>
+                                <th>#</th>
+                                <th>Type Of Environment</th>
+                                <th>Urban</th>
+                                <th>Sub-Urban</th>
+                                <th>Rural</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of viewList; let i = index">
+                                    <td>
+                                        <span>{{i+1}}</span>
+                                    </td>
+                                    <td *ngFor="let objKey of _object.keys(row); let j = index">
+                                        <span>{{ row[objKey] }} </span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                            <thead class=" thead-light">
+                                <tr>
+                                    <th colspan="3">Direction</th>
+                                    <th>eNb</th>
+                                    <th>UE</th>
+                                </tr>
+                                <th colspan="3">EIRP [dBm]</th>
+                                <td>{{eNb}}</td>
+                                <td>{{UE}}</td>
+                                <tr>
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of viewList2; let i = index">
+                                    <td *ngFor="let objKey of _object.keys(row); let j = index">
+                                        <span>{{ row[objKey] }} </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+<!-- <div class="float-right"> -->
+<!-- <div class="card">
+    <div class=" card-body"> -->
+<div id="table" class="table-editable" style="overflow-x:auto;">
+    <table class=" table table-bordered table-responsive-xl table-striped">
+        <thead class=" thead-light">
+            <tr>
+                <th>Result Table</th>
+                <th></th>
+                <th colspan="3" class="text-center"><span>Downlink</span>
+                </th>
+                <th colspan="3" class="text-center"><span>Uplink</span>
+                </th>
+            </tr>
+            <th>#</th>
+            <th>Modulation</th>
+            <th>Urban</th>
+            <th>Sub-Urban</th>
+            <th>Rural</th>
+            <th>Urban</th>
+            <th>Sub-Urban</th>
+            <th>Rural</th>
+            <!-- <th>Unit</th>
+                    <th class="text-center">Action</th> -->
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of linkedBudgetResultList; let i = index">
+                <td>
+                    <span>{{i+1}}</span>
+                </td>
+                <!-- | number : '1.2-2' (keyup)=" changeValue(i, objKey , $event)" (blur)="updateList(i, objKey, $event)"
+                        contenteditable="true" -->
+
+                <td *ngFor="let objKey of _object.keys(row); let j = index">
+                    <span>{{ row[objKey] }} </span>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<!-- </div>
+</div> -->
+<!-- </div>
+    </div>
+</div> -->
